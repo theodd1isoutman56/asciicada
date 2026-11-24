@@ -1,11 +1,19 @@
-from random import randrange  #im using this tamagothc itutorial and they tell us to improt this, nto sure what its used fo ryet.
+from random import randrange  #im using this tamagothc itutorial and they tell us to improt this, nto sure what its used fo ryet.1
+
 import time
 
 class tamagotchi:
+
+    def cicadasciidisplay(self):
+      with open("assetsicada/cicada_normal.txt", "r", encoding="utf-8") as file:
+        art = file.read()
+        print(art)
+
     def __init__(self):
         self.name="baker"
 
     def run(self):
+        self.cicadasciidisplay()
         while True:
             print("1, feed")
             print("2, play")
@@ -24,5 +32,6 @@ class tamagotchi:
             else:
                 print("invaild")
 
-env = tamagotchi()
-env.run()
+
+game = tamagotchi()
+game.run()
