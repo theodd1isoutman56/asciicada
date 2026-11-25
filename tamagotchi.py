@@ -16,12 +16,22 @@ class asciicada:
         art = file.read()
         print(art)
 
+    def cicadablinksocute(self):
+        with open("assetsicada/cicada_blink", "r", encoding = 'utf-8') as blinky:
+            blink1 = blinky.read()
+            lines = blink1.splitlines()
+            padding = (65 - max(len(line) for line in lines)) // 2
+            return "\n".join(" " * padding + line for line in lines)
 
     def cicadagui(self):
         with open("assetsicada/cicada_normal.txt", "r", encoding = "utf-8") as normal:
             normal1 = normal.read()     
-            return textwrap.dedent(normal1)
+            #the next 3 lines needed to be ai generated, its to help with centering, i had no clue why it wouldnt center :/
+            lines = normal1.splitlines()
+            padding = (65 - max(len(line) for line in lines)) // 2
+            return "\n".join(" " * padding + line for line in lines)
 
+            
     def feed(self):
         self.hunger = max(0, self.hunger - 10)
 
@@ -60,10 +70,13 @@ game = asciicada()
 app = tk.Tk()
 app.title('you and the cicada. the cicada and you')
 app.geometry('600x500')
-app.configure(bg = 'light gray')
-cicada = tk.Text(app, font =('Consolas', 12), bg = 'light gray', fg = 'black', relief = 'flat', borderwidth = 0, wrap ='none', width = 100, height = 30)
+app.resizable(False, False)
+app.configure(bg='light gray')
+cicada = tk.Text(app, font=("Lucida Console", 9), bg = "light gray", fg='black', relief='flat', borderwidth=0,wrap='none', width=65, height=27, padx=0, pady=0)
 
 cicada.insert("1.0", game.cicadagui())
-cicada.configure(state = "disabled")
-cicada.pack(expand = True)
+cicada.configure(state='disabled')
+
+cicada.place(relx=0.5, y=10, anchor='n')
+
 app.mainloop()
