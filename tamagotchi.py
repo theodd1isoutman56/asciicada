@@ -11,6 +11,12 @@ class tamagotchi:
 
     def __init__(self):
         self.name="baker"
+        self.hunger = 50
+        self.happy=50
+        self.nrg = 50
+
+    def feed(self):
+        self.hunger += 10
 
     def run(self):
         self.cicadasciidisplay()
@@ -22,7 +28,9 @@ class tamagotchi:
             choice = input("")
 
             if choice == "1":
-                print("fed successful")
+                self.feed()
+                print("fed successful") 
+                print(self.hunger)
             elif choice == "2":
                 print( "play successful")
             elif choice == "3":
