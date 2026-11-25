@@ -18,6 +18,10 @@ class tamagotchi:
     def feed(self):
         self.hunger -= 10
 
+
+    def pet(self):
+        self.happy += 5
+
     def run(self):
         self.cicadasciidisplay()
         while True:
