@@ -1,6 +1,7 @@
 from random import randrange  #im using this tamagothc itutorial and they tell us to improt this, nto sure what its used fo ryet.1
 import tkinter as tk
 import time
+import textwrap
 
 class asciicada:
 
@@ -18,8 +19,8 @@ class asciicada:
 
     def cicadagui(self):
         with open("assetsicada/cicada_normal.txt", "r", encoding = "utf-8") as normal:
-            normal1 = normal.read()
-            return normal1        
+            normal1 = normal.read()     
+            return textwrap.dedent(normal1)
 
     def feed(self):
         self.hunger = max(0, self.hunger - 10)
@@ -60,7 +61,7 @@ app = tk.Tk()
 app.title('you and the cicada. the cicada and you')
 app.geometry('600x500')
 app.configure(bg = 'light gray')
-cicada = tk.Text(app, font =('Consolas', 12), bg = 'light gray', fg = 'black', relief = 'flat', borderwidth = 0, wrap ='none')
+cicada = tk.Text(app, font =('Consolas', 12), bg = 'light gray', fg = 'black', relief = 'flat', borderwidth = 0, wrap ='none', width = 100, height = 30)
 
 cicada.insert("1.0", game.cicadagui())
 cicada.configure(state = "disabled")
