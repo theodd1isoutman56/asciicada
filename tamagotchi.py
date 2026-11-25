@@ -16,7 +16,7 @@ class tamagotchi:
         self.nrg = 50
 
     def feed(self):
-        self.hunger += 10
+        self.hunger -= 10
 
     def run(self):
         self.cicadasciidisplay()
