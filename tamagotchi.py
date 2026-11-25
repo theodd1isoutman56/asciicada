@@ -10,6 +10,7 @@ class asciicada:
         self.hunger = 50
         self.happy=50
         self.nrg = 50
+        self.blinking = False
 
     def cicadacli(self):
       with open("assetsicada/cicada_normal.txt", "r", encoding="utf-8") as file:
@@ -17,7 +18,7 @@ class asciicada:
         print(art)
 
     def cicadablinksocute(self):
-        with open("assetsicada/cicada_blink", "r", encoding = 'utf-8') as blinky:
+        with open("assetsicada/cicada_blink.txt", "r", encoding = 'utf-8') as blinky:
             blink1 = blinky.read()
             lines = blink1.splitlines()
             padding = (65 - max(len(line) for line in lines)) // 2
@@ -63,7 +64,23 @@ class asciicada:
             else:
                 print("invaild")
 
-game = asciicada()
+
+    def blink(self):
+        cicada.configure(state='normal')
+        cicada.delete("1.0", "end")
+        cicada.insert("1.0", self.cicadablinksocute())
+        cicada.configure(state = 'disabled')
+        app.after(700, self.normal)
+
+    def normal(self):
+        cicada.configure(state = 'normal')
+        cicada.delete("1.0", "end")
+        cicada.insert("1.0", self.cicadagui())
+        cicada.configure(state='disabled')
+        app.after(1000, self.blink)
+
+
+guigui = asciicada()
 
 #ui  stuff now
 
@@ -74,9 +91,9 @@ app.resizable(False, False)
 app.configure(bg='light gray')
 cicada = tk.Text(app, font=("Lucida Console", 9), bg = "light gray", fg='black', relief='flat', borderwidth=0,wrap='none', width=65, height=27, padx=0, pady=0)
 
-cicada.insert("1.0", game.cicadagui())
+cicada.insert("1.0", guigui.cicadagui())
 cicada.configure(state='disabled')
 
 cicada.place(relx=0.5, y=10, anchor='n')
-
+app.after(3000, guigui.blink) #blinking start! [haha get it like dating start] ##ok ill let myself out now
 app.mainloop()
