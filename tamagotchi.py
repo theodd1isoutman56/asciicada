@@ -2,6 +2,10 @@ from random import randrange  #im using this tamagothc itutorial and they tell u
 import tkinter as tk
 import time
 import textwrap
+import sys
+from pathlib import Path
+
+
 
 class asciicada:
 
